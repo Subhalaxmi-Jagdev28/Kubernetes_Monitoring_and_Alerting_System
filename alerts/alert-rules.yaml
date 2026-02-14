@@ -1,0 +1,26 @@
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: custom-alerts
+  namespace: monitoring
+spec:
+  groups:
+  - name: node-alerts
+    rules:
+
+    - alert: HighCPUUsage
+      expr: 100 - (avg by(instance)
+        (rate(node_cpu_seconds_total{mode="idle"}[5m])) * 100) > 80
+      for: 1m
+      labels:
+        severity: warning
+      annotations:
+        summary: "High CPU Usage detected"
+
+    - alert: PodCrashLoop
+      expr: kube_pod_container_status_restarts_total > 3
+      for: 1m
+      labels:
+        severity: critical
+      annotations:
+        summary: "Pod restarting frequently"
