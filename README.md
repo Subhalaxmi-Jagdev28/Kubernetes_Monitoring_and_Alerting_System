@@ -57,7 +57,7 @@
 ## Figure: Architecture of Kubernetes Monitoring and Alerting System using Prometheus, Grafana, and Alertmanager.
 
 ## Setup Steps
--  To check the installations:
+To check the installations:
 - docker --version
 - kubectl version --client
 - minikube version
@@ -65,7 +65,7 @@
 - git --version
 
 ## To push into the GitHub
--  git init
+- git init
 - git add .
 - git commit 
 - git push
